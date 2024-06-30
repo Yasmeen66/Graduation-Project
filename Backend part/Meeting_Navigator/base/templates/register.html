@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Register Page</h1>
+
+    <br>
+
+    <form method="POST" action="{% url 'register' %}">
+        {% csrf_token %}
+        <div class="mb-3">
+            <input type="text" class="form-control"  aria-describedby="emailHelp" placeholder="Name" name="Name">
+          </div>
+
+        <div class="mb-3">
+          <input type="email" class="form-control"  aria-describedby="emailHelp" placeholder="Email Address" name="Email">
+        </div>
+
+        <div class="mb-3">
+            <input type="password" class="form-control" placeholder="Password" name="Password">
+        </div>
+
+        <div class="mb-3 form-check">
+          <input type="checkbox" class="form-check-input" id="exampleCheck1" name="agreement">
+          <label class="form-check-label" for="exampleCheck1">Check me out</label>
+        </div>
+        <br>
+
+        <button type="submit" class="btn btn-primary">Sign Up</button>
+      </form>
+
+{% endblock %}
+
