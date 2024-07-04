@@ -1,0 +1,18 @@
+from django.db import migrations
+
+def fix_email_unique_constraint(apps, schema_editor):
+    Member = apps.get_model('base', 'Member')
+    for member in Member.objects.all():
+        if not member.email:
+            member.email = 'default@example.com'
+            member.save()
+
+class Migration(migrations.Migration):
+
+    dependencies = [
+        ('base', '0006_alter_member_email'),
+    ]
+
+    operations = [
+        migrations.RunPython(fix_email_unique_constraint),
+    ]

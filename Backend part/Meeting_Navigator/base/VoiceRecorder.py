@@ -8,13 +8,17 @@ from .models import RecordEntry
 class VoiceRecorder:
     def __init__(self):
         self.recording = False
+        self.recording_thread = None
 
     def click_handler(self):
         if self.recording:
             self.recording = False
+            if self.recording_thread:
+                self.recording_thread.join()  # Wait for the recording thread to finish
         else:
             self.recording = True
-            threading.Thread(target=self.record).start()
+            self.recording_thread = threading.Thread(target=self.record)
+            self.recording_thread.start()
 
     def record(self):
         audio = pyaudio.PyAudio()
@@ -52,21 +56,16 @@ class VoiceRecorder:
                 print(f"Text saved to database and text file: {text_file_path}")
 
     def save_audio(self, frames):
-        exists = True
         i = 1
-        while exists:
-            if os.path.exists(f"recording{i}.wav"):
-                i += 1
-            else:
-                exists = False
+        while os.path.exists(f"recording{i}.wav"):
+            i += 1
 
         sound_file_path = f"recording{i}.wav"
-        sound_file = wave.open(sound_file_path, "wb")
-        sound_file.setnchannels(1)
-        sound_file.setframerate(44100)
-        sound_file.setsampwidth(pyaudio.PyAudio().get_sample_size(pyaudio.paInt16))
-        sound_file.writeframes(b"".join(frames))
-        sound_file.close()
+        with wave.open(sound_file_path, "wb") as sound_file:
+            sound_file.setnchannels(1)
+            sound_file.setframerate(44100)
+            sound_file.setsampwidth(pyaudio.PyAudio().get_sample_size(pyaudio.paInt16))
+            sound_file.writeframes(b"".join(frames))
 
         return sound_file_path
 
@@ -76,7 +75,11 @@ class VoiceRecorder:
             try:
                 print("Processing audio file:", audio_file_path)
                 audio_data = recognizer.record(source)
-                recognized_text = recognizer.recognize_google(audio_data, language='en-US')
+
+                # Select language for speech recognition
+                meeting_lang = self.get_valid_meeting_language()
+
+                recognized_text = recognizer.recognize_google(audio_data, language=meeting_lang)
                 print(f"Recognized text: {recognized_text}")
                 return recognized_text
             except sr.UnknownValueError as e:
@@ -85,3 +88,16 @@ class VoiceRecorder:
                 print(f"Could not request results from Google Speech Recognition service: {e}")
 
         return None
+
+    def get_valid_meeting_language(self):
+        while True:
+            meeting_lang_test = input("Please input meeting language ('arabic' or 'english'): ")
+            if meeting_lang_test.lower().replace(" ", "") == 'arabic':
+                print("تم تحديد اللغة العربية")
+                return 'ar'
+            elif meeting_lang_test.lower().replace(" ", "") == 'english':
+                print("English is the Selected meeting language")
+                return 'en-US'
+            else:
+                print("Invalid input. Please enter 'arabic' or 'english'.")
+                continue

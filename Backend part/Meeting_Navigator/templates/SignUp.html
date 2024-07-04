@@ -1,0 +1,72 @@
+{% load form_tags %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+</head>
+<body>
+    <header>
+        <div class="nav container">
+            <ul>
+                <li><a href="{% url 'home' %}" class="websiteName">Meeting Navigator</a></li>
+            </ul>
+            <div>
+                <a href="{% url 'login' %}"><button>Sign In</button></a>
+            </div>
+        </div>
+    </header>
+    <div class="login container">
+        <div class="login-container form-container">
+            <h2 class="handelh2">Welcome, Let’s get started</h2>
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="error-message">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+            <form method="POST" action="{% url 'signup' %}" id="signupForm">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    {{ form.name|attr:"id:name" }}
+                </div>
+                <div id="nameError" class="error-message"></div>
+
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    {{ form.email|attr:"id:email" }}
+                </div>
+                <div id="emailError" class="error-message"></div>
+
+                <div class="form-group">
+                    <label for="phone">Phone:</label>
+                    {{ form.phone|attr:"id:phone" }}
+                </div>
+                <div id="phoneError" class="error-message"></div>
+
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    {{ form.password|attr:"id:password" }}
+                </div>
+                <div id="passwordError" class="error-message"></div>
+
+                <div class="form-group">
+                    <label for="showPassword"></label><input type="checkbox" id="showPassword"> Show Password
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn">Sign Up</button>
+                </div>
+                <div class="form-group">
+                    <a href="{% url 'login' %}">Already have an account</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="{% static 'js/validationLogin.js' %}"></script>
+</body>
+</html>
