@@ -43,7 +43,10 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
 
 class RecordEntry(models.Model):
-    content = models.TextField()
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='record_entries')
+    meeting_name = models.CharField(max_length=70,null=True,blank=True)
+    meeting_subject = models.CharField(max_length=70,default="Default Meeting Subject",null=True,blank=True)
+    content = models.TextField(blank=True, null=True)
 
     def __str__(self):
-        return self.content[:50]
+        return self.meeting_name[:50]

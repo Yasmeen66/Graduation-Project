@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!------------css links------------>
+    <link rel="stylesheet" href="home.css" />
+    <title>Latest Meeting</title>
+</head>
+<body>
+    <!--------------navbar---------------->
+    <header>
+        <div class="nav container">
+            <div>
+                <a href="navbar.html" class="websiteName">Meeting Navigator</a>
+            </div>
+            <ul class="navbar">
+                <li><a href="NewMeeting.html">New Meeting </a></li>
+                <li><a href="LatestMeeting.html"> Latest Meeting</a></li>
+            </ul>
+            <!------------login buttom---------------->
+            <a href="#"><button>Sign Out</button></a>
+        </div>
+    </header>
+    <div id="list">
+        <!---------------list=-------------------->
+        <div class="rounded-square">
+            <div id="selectMeeting"> select the meeting </div>
+            <!--<div id="selectItem">
+                Select
+            </div>-->
+            <div>
+                <div>
+                    <input type="text" id="mySearch" onkeyup="myFunction()" placeholder="Search.."
+                        title="Type in a category">
+                    <ul id="myMenu" class="set">
+                        <li><a href="#">HTML</a></li>
+                        <li><a href="#">CSS</a></li>
+                        <li><a href="#">JavaScript</a></li>
+                        <li><a href="#">PHP</a></li>
+                        <li><a href="#">Python</a></li>
+                        <li><a href="#">jQuery</a></li>
+                        <li><a href="#">SQL</a></li>
+                        <li><a href="#">Bootstrap</a></li>
+                        <li><a href="#">Node.js</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-------------------------Latest Meeting page--------------------------->
+            <div class="radioBox " >
+                <div class="nav ">
+
+                        <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                        <label for="inlineRadio1" id="handelSpace">Summerize  </label>
+
+                        <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                        <label for="inlineRadio2" id="handelSpace">Report  </label>
+
+                        <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
+                        <label for="inlineRadio3" id="handelSpace"> Quize  </label>
+
+                        <input type="radio" name="inlineRadioOptions" id="inlineRadio4" value="option4">
+                        <label for="inlineRadio3" id="handelSpace">Q&A </label>
+
+                </div>
+                <!--------------------------button------------------------------------->
+                <div>
+                    <button id="toggleButton" onclick="openSelectedTab()" type="button">GO ON</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="LatestMeeting.js"></script>
+</html>

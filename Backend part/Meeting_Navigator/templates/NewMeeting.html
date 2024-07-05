@@ -1,51 +1,59 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/home.css' %}">
     <title>New Meeting</title>
-    <script>
-        function createMeeting(event) {
-            event.preventDefault();
-            // Collect the meeting name and subject if needed
-            var meetingName = document.getElementById('meetingName').value;
-            var meetingSubject = document.getElementById('meetingSubject').value;
-
-            // Redirect to Google Meet
-            window.location.href = "https://meet.google.com/?hs=193&pli=1";
-        }
-    </script>
 </head>
-
 <body>
     <header>
         <div class="nav container">
             <div>
-                <a href="home.html" class="websiteName">Meeting Navigator</a>
+                <a href="{% url 'home' %}" class="websiteName">Meeting Navigator</a>
             </div>
-            <ul class="navbar">
-                <li><a href="{% url 'new_meeting' %}">New Meeting</a></li>
-                <li><a href="LatestMeeting.html">Latest Meeting</a></li>
-            </ul>
+            <div class="nav-container">
+                <ul class="navbar">
+                    <li><a href="{% url 'new_meeting' %}">New Meeting</a></li>
+                    <li><a href="#">Latest Meeting</a></li>
+                </ul>
+            </div>
             <a href="#"><button>Sign Out</button></a>
         </div>
     </header>
-    <div class="meetingLink">
-        <section>
-            <form onsubmit="createMeeting(event)">
-                <label for="meetingName">Meeting Name: </label>
-                <input id="meetingName" type="text" required minlength="2" maxlength="70" />
-                <br /><br /><br />
-                <label for="meetingSubject">Meeting Subject: </label>
-                <input id="meetingSubject" type="text" required minlength="2" maxlength="70" />
-                <br /><br /><br />
-                <button type="submit">Create Meeting</button>
-            </form>
-        </section>
-    </div>
-</body>
 
+    <div class="center-container">
+        <div class="meetingLink" style="margin: 100px">
+            <section>
+                <form id="meetingForm" method="post" action="{% url 'new_meeting' %}">
+                    {% csrf_token %}
+                    <label for="meeting_name">Meeting Name:</label>
+                    <input type="text" id="meeting_name" name="meeting_name" required minlength="2" maxlength="70">
+                    <br /><br /><br />
+
+                    <label for="meeting_subject">Meeting Subject:</label>
+                    <input type="text" id="meeting_subject" name="meeting_subject" required minlength="2" maxlength="70">
+                    <br /><br /><br />
+
+                    <div class="space">
+                        <button type="submit">Create Meeting</button>
+                        <a href="{% url 'record_voice' %}">
+                            <button type="button">Record</button>
+                        </a>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript to redirect to Google Meet if needed
+        function redirectToGoogleMeet(event) {
+            event.preventDefault();
+            document.getElementById("meetingForm").submit();
+            window.location.href = "https://workspace.google.com/products/meet/";
+        }
+    </script>
+</body>
 </html>
