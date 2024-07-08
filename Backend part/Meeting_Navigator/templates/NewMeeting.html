@@ -1,59 +1,60 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <!----------------------------css links---------------------------------->
     <link rel="stylesheet" href="{% static 'css/home.css' %}">
     <title>New Meeting</title>
 </head>
+
 <body>
+    <!--------------------------------navbar----------------------------------->
     <header>
         <div class="nav container">
             <div>
                 <a href="{% url 'home' %}" class="websiteName">Meeting Navigator</a>
             </div>
-            <div class="nav-container">
-                <ul class="navbar">
-                    <li><a href="{% url 'new_meeting' %}">New Meeting</a></li>
-                    <li><a href="#">Latest Meeting</a></li>
-                </ul>
-            </div>
-            <a href="#"><button>Sign Out</button></a>
+            <ul class="navbar">
+                <li><a href="{% url 'new_meeting' %}">New Meeting </a></li>
+                <li><a href="{% url 'show_data' %}"> Last Meeting</a></li>
+            </ul>
+            <!-----------------------login buttom------------------------------>
+            <a href="{% url 'login' %}"><button>Sign Out</button></a>
         </div>
     </header>
+            <!------------------------new meeting--------------------------------->
+    <div  class="mettingLink" >
+        <section>
+            <form id="meetingForm" method="post" action="{% url 'new_meeting' %}">
+                {% csrf_token %}
+                <label for="mettingName">Meeting Name : </label>
+                <input class="" id="mettingName" name="meeting_name"  type="text" required minlength="2" maxlength="120" />
+                <br />
+                <br />
+                <br />
+                <label  for="mettingSubject">Email: </label>
+                <input   class="" id="mettingSubject" name="email" type="text"  minlength="2" maxlength="70" />
+                <br />
+                <br />
+                <br />
+                <div class="space">
+                    <button type="submit" id="record" >Record</button>
+                    <button type="button" id="meeting">Create Meeting</button>
+                </div>
 
-    <div class="center-container">
-        <div class="meetingLink" style="margin: 100px">
-            <section>
-                <form id="meetingForm" method="post" action="{% url 'new_meeting' %}">
-                    {% csrf_token %}
-                    <label for="meeting_name">Meeting Name:</label>
-                    <input type="text" id="meeting_name" name="meeting_name" required minlength="2" maxlength="70">
-                    <br /><br /><br />
+            </form>
+        </section>
 
-                    <label for="meeting_subject">Meeting Subject:</label>
-                    <input type="text" id="meeting_subject" name="meeting_subject" required minlength="2" maxlength="70">
-                    <br /><br /><br />
-
-                    <div class="space">
-                        <button type="submit">Create Meeting</button>
-                        <a href="{% url 'record_voice' %}">
-                            <button type="button">Record</button>
-                        </a>
-                    </div>
-                </form>
-            </section>
-        </div>
     </div>
-
     <script>
-        // JavaScript to redirect to Google Meet if needed
-        function redirectToGoogleMeet(event) {
-            event.preventDefault();
-            document.getElementById("meetingForm").submit();
-            window.location.href = "https://workspace.google.com/products/meet/";
-        }
-    </script>
+
+        document.getElementById("meeting").addEventListener("click", function(event) {
+         window.open("https://workspace.google.com/products/meet/", "_blank");
+     });
+     </script>
+
 </body>
 </html>

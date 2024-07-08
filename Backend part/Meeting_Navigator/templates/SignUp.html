@@ -1,6 +1,4 @@
-{% load form_tags %}
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,57 +14,45 @@
             <ul>
                 <li><a href="{% url 'home' %}" class="websiteName">Meeting Navigator</a></li>
             </ul>
-            <div>
-                <a href="{% url 'login' %}"><button>Sign In</button></a>
-            </div>
         </div>
     </header>
     <div class="login container">
-        <div class="login-container form-container">
+        <div class="login-container">
             <h2 class="handelh2">Welcome, Let’s get started</h2>
-            {% if messages %}
-                {% for message in messages %}
-                    <div class="error-message">{{ message }}</div>
-                {% endfor %}
-            {% endif %}
-            <form method="POST" action="{% url 'signup' %}" id="signupForm">
-                {% csrf_token %}
-                <div class="form-group">
-                    <label for="name">Name:</label>
-                    {{ form.name}}
+              {% if messages %}
+                <div class="messages">
+                    {% for message in messages %}
+                        <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
                 </div>
+            {% endif %}
+
+            <form action="{% url 'signup' %}" id="signupForm" method="POST">
+                {% csrf_token %}
+                <span>Enter your full name</span>
+                <input type="text" id="name" name="name" placeholder="your name" required minlength="3">
                 <div id="nameError" class="error-message"></div>
 
-                <div class="form-group">
-                    <label for="email">Email:</label>
-                    {{ form.email}}
-                </div>
+                <span>Enter your email address</span>
+                <input type="email" id="email" name="email" placeholder="yourmail@gmail.com" required>
                 <div id="emailError" class="error-message"></div>
 
-                <div class="form-group">
-                    <label for="phone">Phone:</label>
-                    {{ form.phone }}
-                </div>
+                <span>Phone</span>
+                <input type="text" id="phone" name="phone" placeholder="Enter your number" required>
                 <div id="phoneError" class="error-message"></div>
 
-                <div class="form-group">
-                    <label for="password">Password:</label>
-                    {{ form.password}}
-                </div>
+                <span>Enter your password</span>
+                <input type="password" id="password" name="password" placeholder="password" required minlength="8">
                 <div id="passwordError" class="error-message"></div>
 
-                <div class="form-group">
-                    <label for="showPassword"></label><input type="checkbox" id="showPassword"> Show Password
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn">Sign Up</button>
-                </div>
-                <div class="form-group">
-                    <a href="{% url 'login' %}">Already have an account</a>
-                </div>
+                <button type="submit" class="btn">Sign Up</button>
+                <a href="SignIn.html">Already have an account</a>
             </form>
+            <a href="{% url 'login' %}" class="btn"><button class="btn">Log in</button></a>
         </div>
     </div>
-    <script src="{% static 'js/validationLogin.js' %}"></script>
 </body>
+<script src="{% static 'js/validation' %}"></script>
 </html>

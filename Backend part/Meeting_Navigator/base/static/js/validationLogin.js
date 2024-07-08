@@ -1,4 +1,5 @@
 document.getElementById("loginForm").addEventListener("submit", function(event) {
+    event.preventDefault();
     let isValid = true;
 
     // Email validation
@@ -27,9 +28,9 @@ document.getElementById("loginForm").addEventListener("submit", function(event) 
         passwordError.textContent = "";
     }
 
-    // If the form is not valid, prevent submission
-    if (!isValid) {
-        event.preventDefault(); // Prevent form submission
+    // If the form is valid, redirect to NewMeeting.html
+    if (isValid) {
+        window.location.href = "NewMeeting.html";
     }
 });
 

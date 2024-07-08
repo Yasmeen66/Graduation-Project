@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-    <link rel="stylesheet" href="{% static "css/home.css" %}">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <title> Home </title>
+    <!------------links of css--------------->
+     <link rel="stylesheet" href="{% static 'css/home.css' %}">
 </head>
 <body>
     <header>
@@ -14,14 +14,22 @@
             <ul>
                 <li><a href="{% url 'home' %}" class="websiteName">Meeting Navigator</a></li>
             </ul>
+            <!------------login buttom---------------->
             <div>
-                <a href="{% url 'login' %}"><button>Sign In</button></a>
-            </div>
+            <a href="{% url 'login' %}"><button>Sign In</button></a>
+            <a href="{% url 'signup' %}"><button >Sign Up</button></a>
+            </div> 
         </div>
     </header>
-    <!-- Rest of your HTML content -->
+    <!-------------------home------------------------->
+    <div class="intro container" >
+        <div class="large">
+            
+            ARTIFICIAL INTELLIGENCE ASSISTANT DESIGNED TO FACILITATE THE MANAGEMENT OF VIRTUALMEETINGS.
+        </div>
+        <div class="big">Try our App</div>
+        <div class="normal">summerize your meeting record, Generate a quize Generate an agreement about the meeting with Al.</div>
+    </div>
+
 </body>
 </html>
-
-
-

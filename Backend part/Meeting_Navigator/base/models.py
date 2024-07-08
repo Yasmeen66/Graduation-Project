@@ -43,10 +43,16 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
 
 class RecordEntry(models.Model):
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='record_entries')
-    meeting_name = models.CharField(max_length=70,null=True,blank=True)
-    meeting_subject = models.CharField(max_length=70,default="Default Meeting Subject",null=True,blank=True)
+    # user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='record_entries',null=True)
+    meeting_name = models.CharField(max_length=70)
+    email = models.EmailField(max_length=200, unique=True)
     content = models.TextField(blank=True, null=True)
+    summary = models.TextField(blank=True, null=True)
+    # quiz=models.TextField(blank=True, null=True)
+    # report = models.TextField(blank=True,null=True)
+    # Ques = models.TextField(blank=True,null=True)
 
     def __str__(self):
-        return self.meeting_name[:50]
+        if self.meeting_name:
+            return self.meeting_name[:20]
+        return "No Meeting Name"

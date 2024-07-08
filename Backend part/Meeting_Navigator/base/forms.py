@@ -21,9 +21,16 @@ class CustomUserForm(forms.ModelForm):
         }
 
 
+# forms.py
+from django import forms
+from .models import RecordEntry, CustomUser
+
+
 class RecordEntryForm(forms.ModelForm):
-    meeting_name=forms.CharField(widget=forms.TextInput,label='meeting_name')
-    meeting_subject=forms.CharField(widget=forms.TextInput,label='meeting_subject')
+    meeting_name = forms.CharField(widget=forms.TextInput, label='Meeting Name')
+    meeting_subject = forms.CharField(widget=forms.TextInput, label='Meeting Subject')
+
     class Meta:
         model = RecordEntry
         fields = ['meeting_name', 'meeting_subject']
+

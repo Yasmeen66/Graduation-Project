@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 * {
     font-family: 'Poppins', sans-serif;
@@ -14,17 +14,20 @@
 :root {
     --main-color: #fd7e14;
     --bg-color: black;
-    --second-color: #8a8a8a;
+    --second-clor:#8a8a8a;
 }
-
+/*---------------------------home page-----------------------------------*/
 .container {
     max-width: 1068px;
-    margin: 0 auto;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 header {
+    display: block;
     width: 100%;
     position: fixed;
+    overflow: hidden;
     top: 0;
     left: 0;
     background: var(--bg-color);
@@ -41,7 +44,7 @@ header {
 
 .websiteName {
     font-size: 2rem;
-    color: var(--main-color);
+    color: #fd7e14;
 }
 
 button {
@@ -50,18 +53,19 @@ button {
     color: var(--main-color);
     font-size: 18px;
     letter-spacing: 1px;
+    text-decoration: none;
     background: transparent;
     cursor: pointer;
-    transition: 0.5s ease-out;
-    border: 1px solid var(--main-color);
+    transition: ease-out 0.5s;
+    border: solid #fd7e14;
     padding: 8px 22px;
-    border-radius: 50px;
-    box-shadow: inset 0 0 0 0 var(--main-color);
+    border-radius: 5rem;
+    box-shadow: inset 0 0 0 0 #fd7e14;
 }
 
 button:hover {
-    color: #f1eded;
-    box-shadow: inset 0 -100px 0 0 var(--main-color);
+    color: rgb(241, 237, 237);
+    box-shadow: inset 0 -100px 0 0 #fd7e14;
 }
 
 button:active {
@@ -73,10 +77,11 @@ button:active {
     position: relative;
     width: 60%;
     padding-top: 20px;
+
 }
 
 .large {
-    font-weight: 600;
+    font-weight:600;
     font-size: 43px;
     margin-bottom: 20px;
 }
@@ -91,37 +96,39 @@ button:active {
     font-weight: 400;
     font-size: 25px;
 }
-
-/* New Meeting */
-.navbar {
+/*-------------------------------new meeting -----------------------------*/
+.navbar{
     display: flex;
-}
 
-.navbar a {
+}
+.navbar a{
     padding: 8px 17px;
+    color: var(--main-color);
     font-size: 1.3rem;
     font-weight: 500;
     color: white;
 }
-
-.navbar a:hover {
+.navbar a:hover{
     text-transform: uppercase;
     color: var(--main-color);
 }
-
-.meetingLink {
+.mettingLink {
     padding: 20px;
-    border: 5px solid var(--main-color);
+    border: 5px solid #fd7e14;
     text-align: center;
     border-radius: 10px;
     width: 600px;
+    height: auto;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
-
-/* Latest Meeting */
+section form{
+    align-items: center;
+    margin-top: 80px;
+}
+/*------------------------------latest maating--------------------------------------*/
 #list {
     margin: 15% 22% 20%;
 }
@@ -139,7 +146,7 @@ button:active {
 }
 
 .select {
-    border: 1px solid var(--main-color);
+    border: 25%;
 }
 
 #selectMeeting {
@@ -147,7 +154,7 @@ button:active {
     font-size: 30px;
     padding-bottom: 20px;
     width: 100%;
-    color: #000;
+    color: #000000;
 }
 
 .style {
@@ -159,129 +166,116 @@ button:active {
     box-sizing: border-box;
     background-color: #fff;
     border-radius: 20px;
-    border: 6px solid var(--main-color);
-    box-shadow: 8px 8px rgba(253, 125, 20, 0.692);
+    border: 6px solid #fd7e14;
+    /* Adjust the border-radius to control the curvature */
+    box-shadow: 8px 8px #fd7d14c5(0, 0, 0, 0.692) ;
     align-items: center;
     color: #fff;
-}
 
+}
+/*---------------------------Style the search box--------------------------------*/
 #mySearch {
     width: 100%;
     font-size: 18px;
-    margin: 0 7px 7px;
+    margin: 0px 7px 7px 7px;
     padding: 11px;
-    border: 2px solid var(--main-color);
-    border-radius: 50px;
+    border: 2px solid #fd7e14;
+    border-radius: 5rem;
 }
 
+/*----------------------------Style the navigation menu------------------------*/
 #myMenu {
     font-size: 20px;
     list-style-type: none;
     padding: 0;
-    margin: 0 7px 7px;
+    margin: 0px 7px 7px 7px;
     height: 200px;
-    border: 2px solid var(--main-color);
+    border: 2px solid #fd7e14;
     overflow: scroll;
     width: 100%;
 }
 
+/*--------------------Style the navigation links-------------------------*/
 #myMenu li a {
     padding: 12px;
+    text-decoration: none;
     color: black;
+    display: block;
     background: #eee;
-    border: 3px solid #ddd;
+    border : 3px solid #ddd;
 }
 
 #myMenu li a:hover {
     background-color: #bbb3b3;
 }
-
-#toggleButton {
-    background: #fff;
+#toggleButton{
+    background:#ffffff;
     margin-top: 30px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
+#handelSpace{
+    /*padding-left :-40px;*/
+    margin-right: 75px;
+    color: #000000;
 
-#handelSpace {
-    margin-right: 25px;
-    color: #000;
 }
-
-/* Login */
-.login {
+/*--------------------------login----------------------*/
+.login{
     display: grid;
     grid-template-columns: 0.4fr 1fr;
     align-items: center;
     min-height: 100vh;
-}
 
-.login-container {
+}
+.login-container{
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    row-gap: 1rem;
     width: 100%;
 }
-
-.login-container h2 {
+.login-container h2{
     font-size: 1.4rem;
 }
-
-.login-container form {
+.login-container form{
     display: flex;
     flex-direction: column;
 }
-
-.login-container form span {
-    font-size: 0.9rem;
-    color: var(--second-color);
+.login-container form span{
+    font-size: .9rem;
+    color: #8a8a8a;
     margin-bottom: 4px;
 }
-
-.login-container form input {
-    border: 1px solid var(--main-color);
+.login-container form input{
+    border: 1px solid var(--main-color) ;
     outline: none;
     padding: 10px;
     margin-bottom: 1rem;
 }
-
-.login-container form a {
+.login-container form a{
     font-size: 0.9rem;
     text-align: right;
     margin-top: 10px;
-}
 
-.btn {
+}
+.btn{
     width: 100%;
 }
-
-/* Sign Up */
-.form-container {
+/*--------------------sign up------------------------*/
+.handelh2{
+    margin-top: 80px;
+}
+/*----------------------image--------------------------*/
+/*.login-image{
     display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+    margin: 20px;
+    min-height: 100vh;
+    background-repeat: no-repeat;
+    background-image: cover;
 
-.form-group {
-    display: flex;
-    align-items: center;
-    margin-bottom: 1rem;
-    width: 100%;
-}
-
-.form-group label {
-    width: 150px;
-    text-align: right;
-    margin-right: 10px;
-}
-
-.form-group input {
-    flex: 1;
-    padding: 10px;
-    border: 1px solid var(--main-color);
-    outline: none;
-}
+}*/
+/*----------------form vaidation --------------------------*/
 
 .error-message {
     color: red;
@@ -292,29 +286,20 @@ button:active {
 input.invalid {
     border-color: red;
 }
-
-/* Image */
-.login-image {
-    display: flex;
-    margin: 20px;
-    min-height: 100vh;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-/* Summary */
-.boxScroll {
+/*----------------summary-------------------------------*/
+.boxScroll{
     background-color: #f5eded;
-    color: #000;
+    color: #000000;
     padding: 10px;
-}
 
-#box-contant {
+
+}
+#box-contant{
     font-size: 20px;
     list-style-type: none;
     padding: 10px;
     height: 450px;
-    border: 2px solid var(--main-color);
+    border: 2px solid #fd7e14;
     overflow: scroll;
     width: 100%;
 }

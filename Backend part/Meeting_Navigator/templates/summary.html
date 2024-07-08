@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <title>Summary</title>
+</head>
+<body>
+    <header>
+        <div class="nav container">
+            <ul>
+                <li><a href="{% url 'home' %}" class="websiteName">Meeting Navigator</a></li>
+            </ul>
+        </div>
+    </header>
+    <div id="list">
+        <div class="rounded-square">
+            <div id="selectMeeting">Meeting Summary</div>
+            <div id="box-contant" class="boxScroll">
+                <div>
+                    {{ summary }}
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

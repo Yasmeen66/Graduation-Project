@@ -17,10 +17,10 @@ document.getElementById("signupForm").addEventListener("submit", function(event)
     // Email validation
     const email = document.getElementById("email");
     const emailError = document.getElementById("emailError");
-    const emailPattern = /^[^\s@]+@[^\s@]+\.(com|edu|org)$/;
+    const emailPattern = /^[^\s@]+@[^\s@]+\.(com|edu|org|gov|net)$/;
     if (!emailPattern.test(email.value)) {
         email.classList.add("invalid");
-        emailError.textContent = "Invalid email address. Only .com, .edu, or .org domains are allowed.";
+        emailError.textContent = "Invalid email address. Only .com, .edu, .gov, .net or .org domains are allowed.";
         isValid = false;
     } else {
         email.classList.remove("invalid");
@@ -30,10 +30,10 @@ document.getElementById("signupForm").addEventListener("submit", function(event)
     // Phone validation
     const phone = document.getElementById("phone");
     const phoneError = document.getElementById("phoneError");
-    const phonePattern = /^\d{10}$/;
+    const phonePattern = /^\d{11}$/;
     if (!phonePattern.test(phone.value)) {
         phone.classList.add("invalid");
-        phoneError.textContent = "Phone number must be 10 digits.";
+        phoneError.textContent = "Phone number must be 11 digits.";
         isValid = false;
     } else {
         phone.classList.remove("invalid");
@@ -53,9 +53,9 @@ document.getElementById("signupForm").addEventListener("submit", function(event)
         passwordError.textContent = "";
     }
 
-    // If the form is valid, submit the form
+    // If the form is valid, redirect to login.html
     if (isValid) {
-        event.target.submit(); // Submit the form
+        window.location.href = "login.html";
     }
 });
 
